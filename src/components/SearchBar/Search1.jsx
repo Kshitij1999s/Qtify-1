@@ -104,7 +104,7 @@ export default function Search1({ className, data }) {
 //         }}
 //       />
 //       <button type="submit" className="searchbar-icons">
-//         <Search />
+//         <search />
 //       </button>
 //     </div>
 //   </form>
