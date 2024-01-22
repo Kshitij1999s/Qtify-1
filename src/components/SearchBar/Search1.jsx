@@ -1,112 +1,91 @@
-import { Autocomplete, TextField } from '@mui/material';
-import React, { useState } from 'react';
-import './SearchBar.css';
+// import { Search } from '@mui/icons-material';
+
+// import './SearchBar.css';
+// import { useState } from 'react';
+
+// const SearchBar = ({ className }) => {
+//   const [values, setValues] = useState(null);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//   };
+
+//   const handleChange = (e) => {
+//     console.log(e.target.value);
+//     setValues(e.target.value);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div className={className}>
+//         <input
+//           type="search"
+//           placeholder="Search"
+//           required
+//           value={values}
+//           onChange={handleChange}
+//         />
+//         <button type="submit" className="searchbar-icons">
+//           <Search />
+//         </button>
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default SearchBar;
+
 import { Search } from '@mui/icons-material';
+import './SearchBar.css';
+import { useState } from 'react';
 import MenuItem from '../MenuItem/MenuItem';
 
-export default function Search1({ className, data }) {
-  const [values, setValues] = useState(null);
+const SearchBar = ({ className, data }) => {
+  const [values, setValues] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Handle the form submission
   };
 
-  // console.log(data);
-
   const handleChange = (e) => {
-    // console.log(e.target.value);
     setValues(e.target.value);
   };
 
   const menuList = data.map((option) => ({
     title: option.title,
     image: option.image,
-    follows: option.follows,
+    followers: option.follows,
   }));
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={className}>
-        <Autocomplete
-          fullWidth
-          freeSolo
-          id="free-solo-2-demo"
-          disableClearable
-          options={menuList}
-          getOptionLabel={(option) => option.title}
-          renderOption={(props, option) => (
-            <MenuItem
-              {...props}
-              key={option.id}
-              title={option.title}
-              image={option.image}
-              follows={option.follows}
-            />
-          )}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="search"
-              InputProps={{
-                ...params.InputProps,
-                type: 'search',
-              }}
-              value={values}
-              onChange={handleChange}
-            />
-          )}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.defaultMuiPrevented = true;
-            }
-          }}
+        <input
+          type="search"
+          placeholder="search"
+          required
+          value={values}
+          onChange={handleChange}
         />
         <button type="submit" className="searchbar-icons">
           <Search />
         </button>
       </div>
+      {values.length > 0 && (
+        <div className="search-dropdown">
+          {menuList.map((option) => (
+            <MenuItem
+              key={option.title}
+              title={option.title}
+              image={option.image}
+              followers={option.followers}
+            />
+          ))}
+        </div>
+      )}
     </form>
   );
-}
+};
 
-// return (
-//   <form onSubmit={handleSubmit}>
-//     <div className={className}>
-//       <Autocomplete
-//         fullWidth
-//         freeSolo
-//         id="free-solo-2-demo"
-//         disableClearable
-//         options={data.map((option) => (
-//           <MenuItem
-//             key={option.title}
-//             title={option.title}
-//             image={option.image}
-//             followers={option.followers}
-//           />
-//         ))}
-//         renderInput={(params) => (
-//           <TextField
-//             {...params}
-//             label="Search input"
-//             InputProps={{
-//               ...params.InputProps,
-//               type: 'search',
-//             }}
-//             value={values}
-//             onChange={handleChange}
-//           />
-//         )}
-//         onKeyDown={(event) => {
-//           if (event.key === 'Enter') {
-//             event.defaultMuiPrevented = true;
-//           }
-//         }}
-//       />
-//       <button type="submit" className="searchbar-icons">
-//         <search />
-//       </button>
-//     </div>
-//   </form>
-// );
-// };
+export default SearchBar;
