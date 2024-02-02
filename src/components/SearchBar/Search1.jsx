@@ -21,6 +21,7 @@
 //         <input
 //           type='Search'
 //           placeholder='search'
+
 //           required
 //           value={values}
 //           onChange={handleChange}
@@ -62,8 +63,8 @@ const SearchBar = ({ className, data }) => {
     <form onSubmit={handleSubmit}>
       <div className={className}>
         <input
-          type="search"
-          placeholder="search"
+          type='Search'
+          placeholder='search'
           required
           value={values}
           onChange={handleChange}
