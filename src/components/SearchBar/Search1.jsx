@@ -19,7 +19,7 @@
 //     <form onSubmit={handleSubmit}>
 //       <div className={className}>
 //         <input
-//           type='search'
+//           type='Search'
 //           placeholder='search'
 //           required
 //           value={values}
