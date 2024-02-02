@@ -19,8 +19,8 @@
 //     <form onSubmit={handleSubmit}>
 //       <div className={className}>
 //         <input
-//           type="search"
-//           placeholder="Search"
+//           type='search'
+//           placeholder='search'
 //           required
 //           value={values}
 //           onChange={handleChange}
